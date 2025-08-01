@@ -9,27 +9,27 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body class="bg-green-100 text-neutral-900 font-inter">
-  <section class="max-w-2xl mx-auto px-6 py-20 text-center space-y-8">
+  <section class="max-w-2xl mx-auto px-6 py-20 text-center">
     <h1 class="text-4xl font-playfair mb-4">Millora la teva compra</h1>
-    <p class="text-lg mb-8">Vols més suport? Afegeix el <strong>Coach Nutricional</strong> per només <strong>35 € al mes</strong>.</p>
+    <p class="text-lg mb-8">Vols més suport? Afegeix el <strong>Coach nutricional de 3 mesos</strong> per aprendre a alimentar-te adequadament.</p>
     <div class="flex flex-col gap-4 max-w-sm mx-auto">
-      <button id="subscribe-button" class="bg-green-700 text-white px-6 py-3 rounded-full">Sí, vull afegir el coach mensual</button>
+      <button id="subscribe-button" class="bg-green-700 text-white px-6 py-3 rounded-full">Sí, vull afegir el coach de 3 mesos</button>
       <a href="thanks.html" class="underline text-sm">No, gràcies. Finalitza la meva compra</a>
     </div>
   </section>
   <script>
-    document.getElementById("subscribe-button").addEventListener("click", async () => {
+    document.getElementById('subscribe-button').addEventListener('click', async () => {
       try {
-        const res = await fetch("/.netlify/functions/upsell-checkout", { method: "POST" });
+        const res = await fetch('/.netlify/functions/upsell-checkout', { method: 'POST' });
         const session = await res.json();
         if (!session.id) throw new Error('No session ID returned');
-        const keyRes = await fetch("/.netlify/functions/get-stripe-key");
+        const keyRes = await fetch('/.netlify/functions/get-stripe-key');
         const { key } = await keyRes.json();
         const stripe = Stripe(key);
         stripe.redirectToCheckout({ sessionId: session.id });
       } catch (err) {
         console.error(err);
-        alert('S\'ha produït un error amb la subscripció. Torna-ho a intentar.');
+        alert('S\'ha produït un error amb el pagament. Torna-ho a intentar.');
       }
     });
   </script>
