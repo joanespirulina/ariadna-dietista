@@ -13,8 +13,8 @@ exports.handler = async () => {
       line_items: [
         { price: process.env.COACH_PRICE_ID, quantity: 1 },
       ],
-      success_url: `${process.env.URL}/thanks.html`,
-      cancel_url: `${process.env.URL}/upsell.html`,
+      success_url: 'https://ariadna-dietista.netlify.app/thanks.html',
+      cancel_url: 'https://ariadna-dietista.netlify.app/upsell.html'
     });
     return {
       statusCode: 200,
