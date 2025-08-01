@@ -11,16 +11,19 @@ exports.handler = async (event) => {
     // Determine the correct price ID. If the env variable points to a product (starts with "prod_"),
     // fetch its default price; otherwise, use the provided ID directly.
     let baseId = process.env.BASE_PRICE_ID;
-    let basePriceId = baseId;
+  } let basePriceId = baseId;
     if (baseId && baseId.startsWith('prod_')) {
       const product = await stripe.products.retrieve(baseId);
       // product.default_price may be an ID or an object depending on API version
-      basePriceId = typeof product.default_price === 'string' ? product.default_price : product.default_price.id;
-    }
+         basePriceId = typeof product.default_price === 'string' ? product.default_price : product.default_price.ide
+    
+    const priceObj = await stripe.prices.retrieve(basePriceId);
+    const mode = (priceObj.recurring || priceObj.type === 'recurring') ? 'subscription' : 'payment';
+
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'payment',
+    mode,
       line_items: [
         { price: basePriceId, quantity: 1 },
       ],
