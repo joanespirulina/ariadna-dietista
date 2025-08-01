@@ -14,8 +14,8 @@ exports.handler = async (event) => {
         { price: process.env.BASE_PRICE_ID, quantity: 1 },
       ],
       customer_email: email,
-      success_url: `${process.env.URL}/upsell.html`,
-      cancel_url: `${process.env.URL}/checkout.html`,
+    success_url: 'https://ariadna-dietista.netlify.app/upsell.html',
+      cancel_url: 'https://ariadna-dietista.netlify.app/checkout.html'
     });
     return {
       statusCode: 200,
