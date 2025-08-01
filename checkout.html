@@ -1,0 +1,47 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra - Dieta Personalitzada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-green-50 text-neutral-900 font-inter">
+  <section class="max-w-xl mx-auto px-6 py-16 text-center space-y-6">
+    <h1 class="text-3xl font-playfair mb-4">Compra el teu pla personalitzat</h1>
+    <form id="checkout-form" class="space-y-4">
+      <input type="text" name="name" placeholder="Nom (opcional)" class="w-full px-4 py-2 rounded border">
+      <input type="email" name="email" placeholder="Correu electrònic" required class="w-full px-4 py-2 rounded border">
+      <input type="tel" name="phone" placeholder="Telèfon (opcional)" class="w-full px-4 py-2 rounded border">
+      <button type="submit" class="bg-green-700 text-white w-full py-3 rounded-full">Continuar amb el pagament</button>
+    </form>
+  </section>
+  <script>
+    const form = document.getElementById('checkout-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      try {
+        // Create a checkout session on our serverless function
+        const res = await fetch("/.netlify/functions/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: data.email })
+        });
+        const session = await res.json();
+        if (!session.id) throw new Error('No session ID returned');
+        // Fetch the publishable key
+        const keyRes = await fetch("/.netlify/functions/get-stripe-key");
+        const { key } = await keyRes.json();
+        const stripe = Stripe(key);
+        stripe.redirectToCheckout({ sessionId: session.id });
+      } catch (err) {
+        console.error(err);
+        alert('Hi ha hagut un error amb el pagament. Torna-ho a intentar.');
+      }
+    });
+  </script>
+</body>
+</html>

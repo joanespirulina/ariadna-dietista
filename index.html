@@ -1,0 +1,89 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ariadna Serra | Dietista Integrativa</title>
+  <!-- Import the Inter and Playfair Display fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <!-- Use our custom stylesheet for colours and layout -->
+  <link href="/style.css" rel="stylesheet">
+  <!-- Stripe JS is only required on pages with payment buttons -->
+</head>
+<body class="bg-beige text-neutral-900 font-inter">
+  <!-- Encapsulate the full page within a main wrapper -->
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-20">
+    <!-- Hero Section -->
+    <section class="text-center space-y-6">
+      <h1 class="text-4xl md:text-6xl font-playfair font-semibold">Benvinguda al teu camí cap a una alimentació integrativa</h1>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto">Sóc Ariadna Serra, dietista integrativa. T'ajudo a dissenyar un pla nutricional personalitzat que respecta el teu cos i els teus objectius de salut.</p>
+      <a href="/checkout.html" class="inline-block bg-green-700 text-white px-8 py-4 rounded-full text-lg">Comença ara</a>
+    </section>
+
+    <!-- Serveis Section -->
+    <section id="serveis" class="space-y-8">
+      <h2 class="text-3xl font-playfair text-center">Serveis</h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="p-6 bg-white rounded-lg shadow-lg space-y-4">
+          <h3 class="text-xl font-semibold">Pla nutricional personalitzat</h3>
+          <p>Crea el teu pla d'alimentació únic basat en la teva salut, preferències i objectius.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg space-y-4">
+          <h3 class="text-xl font-semibold">Seguiment mensual</h3>
+          <p>Revisions setmanals per ajustar el teu pla i assegurar-te que avances correctament.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg space-y-4">
+          <h3 class="text-xl font-semibold">Coach nutricional</h3>
+          <p>Suport continu per resoldre dubtes, generar motivació i adaptar-se als canvis.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre mi Section -->
+    <section id="sobre-mi" class="flex flex-col md:flex-row items-center gap-8">
+      <div class="md:w-1/2 space-y-4">
+        <h2 class="text-3xl font-playfair">Sobre mi</h2>
+        <p>Amb anys d'experiència en nutrició i dietètica, he ajudat centenars de persones a trobar una relació equilibrada amb el menjar. Crec que cada cos és diferent i mereix una atenció personalitzada.</p>
+        <p>Acompanyo les persones en el seu procés de canvi, adaptant estratègies i consells perquè cada pas sigui una victòria.</p>
+      </div>
+      <div class="md:w-1/2">
+        <!-- Placeholder image for About Me section -->
+        <img src="https://images.pexels.com/photos/759468/pexels-photo-759468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Dietista treballant" class="rounded-lg shadow-lg w-full h-auto">
+      </div>
+    </section>
+
+    <!-- Testimonis Section -->
+    <section id="testimonis" class="space-y-8">
+      <h2 class="text-3xl font-playfair text-center">Testimonis</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="p-6 bg-white rounded-lg shadow-lg space-y-2">
+          <p class="italic">“Gràcies a l'acompanyament de l'Ariadna, he recuperat energia i confiança en la meva alimentació.”</p>
+          <p class="font-semibold">– Marta P.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg space-y-2">
+          <p class="italic">“El pla personalitzat s'ha adaptat perfectament al meu ritme de vida i he aconseguit els meus objectius de pes.”</p>
+          <p class="font-semibold">– Jordi R.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crida a l'acció (CTA) Section -->
+    <section class="text-center bg-green-100 p-8 rounded-lg space-y-4">
+      <h2 class="text-3xl font-playfair">Estàs llest per començar?</h2>
+      <p>No esperis més per sentir-te millor amb tu mateix. Reserva ara el teu pla nutricional personalitzat.</p>
+      <a href="/checkout.html" class="inline-block bg-green-700 text-white px-8 py-4 rounded-full text-lg">Compra ara</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6 mt-12">
+    <p>&copy; <span id="currentYear"></span> Ariadna Serra. Tots els drets reservats.</p>
+  </footer>
+
+  <!-- Script to dynamically insert the current year in the footer -->
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
