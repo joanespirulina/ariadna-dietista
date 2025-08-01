@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 /*
- * Creates a subscription checkout session for the nutrition coach upsell.
+CreaCreates a one-time checkout session for the 3-month nutrition coach upsell.r
  * This endpoint returns a session ID for a monthly subscription defined
  * by the COACH_PRICE_ID environment variable. If the provided ID is a product ID,
  * the function retrieves its default price.
@@ -20,7 +20,7 @@ exports.handler = async () => {
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'subscription',
+     mode: 'payment',
       line_items: [
         { price: coachPriceId, quantity: 1 },
       ],
